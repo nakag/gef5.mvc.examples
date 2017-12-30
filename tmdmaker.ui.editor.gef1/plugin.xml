@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="tmdmaker.ui.editor.gef5.TMDEditor"
+            default="true"
+            extensions="tmdx"
+            id="tmdmaker.ui.editor.gef5.editor1"
+            name="TMDX1">
+      </editor>
+   </extension>
+
+</plugin>
