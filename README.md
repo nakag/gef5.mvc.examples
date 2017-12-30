@@ -1,7 +1,7 @@
 # gef5.mvc.examples
 I want to make an Eclipse Graphical Editor with GEF5.
 
-I try to migrate GEF3 Editor of [TDM-Maker](https://github.com/tmdmaker/tmdmaker) to GEF5.
+I try to migrate GEF3 Editor of [TMD-Maker](https://github.com/tmdmaker/tmdmaker) to GEF5.
 
 Example 1
 =========
