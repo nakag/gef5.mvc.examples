@@ -8,13 +8,13 @@ Example 1
 
 Minimal GEF5 Eclipse Graphical Editor.
 
+Example 2
+=========
+
+  Manage multiple models.
 
 Future Ideas
 ==========
-
-* Example 2
-
-  Manage multiple models.
 
 * Example 3
 
