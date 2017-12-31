@@ -11,20 +11,21 @@ Minimal GEF5 Eclipse Graphical Editor.
 Example 2
 =========
 
-  Manage multiple models.
+Manage multiple models.
+
+Example 3
+=========
+
+Move the model using the mouse.
 
 Future Ideas
 ==========
 
-* Example 3
-
-  Move model.
-
-* Example 4
+* Example 4(comming soon)
 
   Undo/Redo.
 
-* Example 5
+* Example 5(now trying)
 
     Add/Remove
 
