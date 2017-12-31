@@ -18,12 +18,12 @@ Example 3
 
 Move the model using the mouse.
 
+Example 4
+=========
+Undo/Redo.
+
 Future Ideas
 ==========
-
-* Example 4(comming soon)
-
-  Undo/Redo.
 
 * Example 5(now trying)
 

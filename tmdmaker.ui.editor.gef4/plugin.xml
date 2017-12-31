@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="tmdmaker.ui.editor.gef5.TMDEditor"
+            contributorClass="org.eclipse.gef.mvc.fx.ui.parts.FXEditorActionBarContributor"
+            default="true"
+            extensions="tmdx"
+            id="tmdmaker.ui.editor.gef5.editor4"
+            name="TMDX4">
+      </editor>
+   </extension>
+
+</plugin>
