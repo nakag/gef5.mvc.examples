@@ -22,15 +22,19 @@ Example 4
 =========
 Undo/Redo.
 
+Example 5(now trying)
+=========
+
+Add/Remove
+
 Future Ideas
 ==========
 
-* Example 5(now trying)
-
-    Add/Remove
-
 * Connection
+
 * Zoom/Scroll/FitToViewportLock
+
+* Resize
 
 Thanks to
 
