@@ -51,4 +51,15 @@ public class DiagramPart extends AbstractContentPart<Group> {
 		ObservableList<Node> children = getVisual().getChildren();
 		children.remove(index);
 	}
+
+	@Override
+	protected void doAddContentChild(Object contentChild, int index) {
+		getContent().add((Entity) contentChild);
+	}
+
+	@Override
+	protected void doRemoveContentChild(Object contentChild) {
+		getContent().remove((Entity) contentChild);
+	}
+	
 }

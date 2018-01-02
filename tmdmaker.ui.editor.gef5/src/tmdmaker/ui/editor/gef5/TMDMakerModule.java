@@ -15,8 +15,10 @@ import org.eclipse.gef.mvc.fx.providers.ShapeOutlineProvider;
 
 import com.google.inject.multibindings.MapBinder;
 
+import tmdmaker.ui.editor.gef5.handlers.CreateNewEntityOnClickHandler;
 import tmdmaker.ui.editor.gef5.parts.EntityPart;
 import tmdmaker.ui.editor.gef5.parts.TMDModelPartFactory;
+import tmdmaker.ui.editor.gef5.tools.ItemCreationModel;
 
 public class TMDMakerModule extends MvcFxModule {
 
@@ -27,7 +29,6 @@ public class TMDMakerModule extends MvcFxModule {
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(FocusAndSelectOnClickHandler.class);
 
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(HoverOnHoverHandler.class);
-
 	}
 
 	protected void bindEntityPartAdapters(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
@@ -70,4 +71,17 @@ public class TMDMakerModule extends MvcFxModule {
 	protected void bindIContentPartFactory() {
 		binder().bind(IContentPartFactory.class).to(TMDModelPartFactory.class);
 	}
+
+	@Override
+	protected void bindIViewerAdaptersForContentViewer(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
+		super.bindIViewerAdaptersForContentViewer(adapterMapBinder);
+		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(ItemCreationModel.class);
+	}
+
+	@Override
+	protected void bindIRootPartAdaptersForContentViewer(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
+		super.bindIRootPartAdaptersForContentViewer(adapterMapBinder);
+		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateNewEntityOnClickHandler.class);
+	}
+
 }

@@ -27,12 +27,20 @@ public class Entity {
 		constraint = new Rectangle(x, y, 0, 0);
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
 
 	public Rectangle getConstraint() {
 		return constraint.getCopy();
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	public Color getColor() {
