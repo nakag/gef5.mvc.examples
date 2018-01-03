@@ -22,7 +22,7 @@ Example 4
 =========
 Undo/Redo.
 
-Example 5(now trying)
+Example 5
 =========
 
 Add/Remove
