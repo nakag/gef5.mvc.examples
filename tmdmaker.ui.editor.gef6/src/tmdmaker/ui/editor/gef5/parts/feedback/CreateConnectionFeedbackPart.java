@@ -1,0 +1,83 @@
+package tmdmaker.ui.editor.gef5.parts.feedback;
+
+import org.eclipse.gef.common.adapt.AdapterKey;
+import org.eclipse.gef.fx.anchors.IAnchor;
+import org.eclipse.gef.fx.anchors.StaticAnchor;
+import org.eclipse.gef.fx.nodes.Connection;
+import org.eclipse.gef.geometry.convert.fx.FX2Geometry;
+import org.eclipse.gef.geometry.convert.fx.Geometry2FX;
+import org.eclipse.gef.geometry.planar.Point;
+import org.eclipse.gef.mvc.fx.parts.AbstractFeedbackPart;
+import org.eclipse.gef.mvc.fx.parts.IVisualPart;
+
+import com.google.common.reflect.TypeToken;
+import com.google.inject.Provider;
+
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
+
+public class CreateConnectionFeedbackPart extends AbstractFeedbackPart<Node> {
+
+	@Override
+	protected Node doCreateVisual() {
+		return new Connection();
+	}
+
+	@Override
+	protected void doRefreshVisual(Node visual) {
+
+	}
+
+	@Override
+	protected void doAttachToAnchorageVisual(IVisualPart<? extends Node> anchorage, String role) {
+		@SuppressWarnings("serial")
+		Provider<? extends IAnchor> adapter = anchorage
+				.getAdapter(AdapterKey.get(new TypeToken<Provider<? extends IAnchor>>() {
+				}));
+		if (adapter == null) {
+			throw new IllegalStateException("No adapter  found for <" + anchorage.getClass() + "> found.");
+		}
+		IAnchor anchor = adapter.get();
+		getVisual().setStartAnchor(anchor);
+
+		MousePositionAnchor endAnchor = new MousePositionAnchor(
+				FX2Geometry.toPoint(getVisual().localToScene(Geometry2FX.toFXPoint(getVisual().getStartPoint()))));
+		endAnchor.init();
+		getVisual().setEndAnchor(endAnchor);
+	}
+
+	@Override
+	protected void doDetachFromAnchorageVisual(IVisualPart<? extends Node> anchorage, String role) {
+		getVisual().setStartPoint(getVisual().getStartPoint());
+		((MousePositionAnchor) getVisual().getEndAnchor()).dispose();
+		getVisual().setEndPoint(getVisual().getEndPoint());
+	}
+
+	@Override
+	public Connection getVisual() {
+		// TODO Auto-generated method stub
+		return (Connection) super.getVisual();
+	}
+
+	private class MousePositionAnchor extends StaticAnchor implements EventHandler<MouseEvent> {
+
+		public MousePositionAnchor(Point referencePositionInScene) {
+			super(referencePositionInScene);
+		}
+
+		public void init() {
+			getRoot().getVisual().getScene().addEventHandler(MouseEvent.MOUSE_MOVED, this);
+		}
+
+		@Override
+		public void handle(MouseEvent event) {
+			Point v = new Point(event.getSceneX(), event.getSceneY());
+			referencePositionProperty().setValue(v);
+		}
+
+		public void dispose() {
+			getRoot().getVisual().getScene().removeEventHandler(MouseEvent.MOUSE_MOVED, this);
+		}
+	}
+}
