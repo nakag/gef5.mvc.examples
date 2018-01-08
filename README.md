@@ -25,16 +25,26 @@ Undo/Redo.
 Example 5
 =========
 
-Add/Remove
+Add/Remove.
+
+Example 6(Now trying)
+=========
+Create connection.
 
 Future Ideas
 ==========
 
-* Connection
-
 * Zoom/Scroll/FitToViewportLock
 
 * Resize
+
+* Context menu
+
+* ContentOutlinePage
+
+* PropertySheet
+
+* Reconnect
 
 Thanks to
 
