@@ -20,6 +20,7 @@ import tmdmaker.ui.editor.gef5.anchors.AnchorProvider;
 import tmdmaker.ui.editor.gef5.behaviors.CreateFeedbackBehavior;
 import tmdmaker.ui.editor.gef5.handlers.CreateNewConnectionClickHandler;
 import tmdmaker.ui.editor.gef5.handlers.CreateNewEntityOnClickHandler;
+import tmdmaker.ui.editor.gef5.handlers.MyPanOnStrokeHandler;
 import tmdmaker.ui.editor.gef5.parts.EntityPart;
 import tmdmaker.ui.editor.gef5.parts.TMDModelPartFactory;
 import tmdmaker.ui.editor.gef5.parts.feedback.TMDFeedbackPartFactory;
@@ -89,6 +90,7 @@ public class TMDMakerModule extends MvcFxModule {
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(ItemCreationModel.class);
 		adapterMapBinder.addBinding(AdapterKey.role(CreateFeedbackBehavior.CREATE_FEEDBACK_PART_FACTORY))
 				.to(TMDFeedbackPartFactory.class);
+//		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(ViewportPolicy.class);
 	}
 
 	@Override
@@ -96,6 +98,13 @@ public class TMDMakerModule extends MvcFxModule {
 		super.bindIRootPartAdaptersForContentViewer(adapterMapBinder);
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateNewEntityOnClickHandler.class);
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateFeedbackBehavior.class);
+//		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateNewConnectionClickHandler.class);
+	}
+
+	@Override
+	protected void bindPanOnTypeHandlerAsIRootPartAdapter(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
+	adapterMapBinder.addBinding(AdapterKey.defaultRole())
+			.to(MyPanOnStrokeHandler.class);
 	}
 
 }

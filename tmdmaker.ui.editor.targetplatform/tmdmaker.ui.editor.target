@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="tmdmaker.ui.editor">
+	<locations>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="http://download.eclipse.org/eclipse/updates/4.12"/>
+			<unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.500.v20190518-1240"/>
+			<unit id="org.eclipse.platform.feature.group" version="4.12.0.v20190605-1801"/>
+			<unit id="org.eclipse.equinox.sdk.feature.group" version="3.18.0.v20190528-1257"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="http://download.eclipse.org/releases/2019-06"/>
+			<unit id="org.eclipse.fx.runtime.min.feature.feature.group" version="3.5.0.201902220600"/>
+			<unit id="org.eclipse.gef.mvc.sdk.feature.group" version="5.1.0.201905091638"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/efxclipse/runtime-released/"/>
+			<unit id="org.eclipse.fx.core.feature.feature.group" version="3.5.0.201902252257"/>
+			<unit id="org.eclipse.fx.runtime.feature.feature.group" version="3.5.0.201902252257"/>
+		</location>
+	</locations>
+</target>

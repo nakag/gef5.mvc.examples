@@ -56,7 +56,6 @@ public class CreateConnectionFeedbackPart extends AbstractFeedbackPart<Node> {
 
 	@Override
 	public Connection getVisual() {
-		// TODO Auto-generated method stub
 		return (Connection) super.getVisual();
 	}
 

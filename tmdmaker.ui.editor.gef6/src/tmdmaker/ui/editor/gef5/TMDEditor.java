@@ -78,28 +78,36 @@ public class TMDEditor extends AbstractFXEditor {
 		getCanvas().setScene(new Scene(borderPane));
 	}
 
-	private static final Image CREATION_ICON = new Image(TMDEditor.class.getClassLoader().getResourceAsStream("icon/new_entity.gif"));
-	private static final Image CONNECTION_CREATION_ICON = new Image(TMDEditor.class.getClassLoader().getResourceAsStream("icon/new_relationship.gif"));
+	private static final Image CREATION_ICON = new Image(
+			TMDEditor.class.getClassLoader().getResourceAsStream("icon/new_entity.gif"));
+	private static final Image CONNECTION_CREATION_ICON = new Image(
+			TMDEditor.class.getClassLoader().getResourceAsStream("icon/new_relationship.gif"));
 
 	private Node createToolPalette() {
 		ItemCreationModel creationModel = getContentViewer().getAdapter(ItemCreationModel.class);
 		ToggleGroup toggleGroup = new ToggleGroup();
 		ImageView imageView = new ImageView(CREATION_ICON);
-		ToggleButton createNode = new ToggleButton("add entity",imageView);
+		ToggleButton createNode = new ToggleButton("add entity", imageView);
 		createNode.setToggleGroup(toggleGroup);
-		createNode.selectedProperty().addListener((e, oldValue, newValue) -> {
-			creationModel.setType(newValue ? ItemCreationModel.Type.Entity : Type.None);
-		});
-		
+		createNode.selectedProperty().addListener(
+				(e, oldValue, newValue) -> creationModel.setType(newValue ? ItemCreationModel.Type.Entity : Type.None));
+
 		imageView = new ImageView(CONNECTION_CREATION_ICON);
 		ToggleButton createConn = new ToggleButton("New Connection", imageView);
 		createConn.setToggleGroup(toggleGroup);
-		createConn.selectedProperty().addListener((e, oldValue, newValue) -> {
-			creationModel.setType(newValue ? ItemCreationModel.Type.Connection : Type.None);
-		});
-	
+		createConn.selectedProperty().addListener((e, oldValue, newValue) -> creationModel
+				.setType(newValue ? ItemCreationModel.Type.Connection : Type.None));
+
 		creationModel.getTypeProperty().addListener((e, oldValue, newValue) -> {
-			if (Type.None == newValue) {
+			if (oldValue == newValue) {
+				return;
+			}
+			switch (newValue) {
+			case Entity:
+			case Connection:
+				break;
+			case None:
+			default:
 				Toggle selectedToggle = toggleGroup.getSelectedToggle();
 				if (selectedToggle != null) {
 					selectedToggle.setSelected(false);
@@ -107,7 +115,6 @@ public class TMDEditor extends AbstractFXEditor {
 			}
 		});
 
-		VBox palette = new VBox(1, createNode, createConn);
-		return palette;
+		return new VBox(1, createNode, createConn);
 	}
 }

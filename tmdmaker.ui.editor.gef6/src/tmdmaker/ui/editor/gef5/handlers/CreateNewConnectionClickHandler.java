@@ -36,21 +36,35 @@ public class CreateNewConnectionClickHandler extends AbstractHandler implements 
 			return;
 		}
 		
-		if (creationModel.getSource() == null) {
-			creationModel.setSource((EntityPart) getHost());
+		EntityPart source = creationModel.getSource();
+		if (source == null) { 
+			IVisualPart<?> part = getHost();
+			if (part instanceof EntityPart) {
+				creationModel.setSource((EntityPart) part);
+			} else {
+				System.out.println("source part is not EntityPart");
+			}
 			return;
 		}
 		
-		EntityPart source = creationModel.getSource();
-		EntityPart target = (EntityPart) getHost();
+		IVisualPart<?> part = getHost();
+		EntityPart target = null;
+		if (part instanceof EntityPart) {
+			target = (EntityPart) part;
+		} else {
+			System.out.println("target part is not EntityPart");
+			creationModel.setSource(null);
+			return;
+		}
+
 		
 		// TODO: Create Recursive Relationship
 		if (source == target) {
 			return;
 		}
 		
-		IVisualPart<? extends Node> part = getHost().getRoot().getChildrenUnmodifiable().get(0);
-		if (part instanceof DiagramPart) {
+		IVisualPart<? extends Node> dpart = getHost().getRoot().getChildrenUnmodifiable().get(0);
+		if (dpart instanceof DiagramPart) {
 			Connection newConnection = new Connection(source.getContent(), target.getContent());
 			newConnection.connect();
 			

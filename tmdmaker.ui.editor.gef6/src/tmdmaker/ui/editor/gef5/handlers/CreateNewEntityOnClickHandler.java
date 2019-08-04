@@ -36,7 +36,7 @@ public class CreateNewEntityOnClickHandler extends AbstractHandler implements IO
 		}
 		
 		if (creationModel.getType() != Type.Entity) {
-			System.out.println(creationModel.getType());
+			System.out.println("creationModel.getType() is not Entity:" + creationModel.getType());
 			return;
 		}
 		IVisualPart<? extends Node> part = viewer.getRootPart().getChildrenUnmodifiable().get(0);

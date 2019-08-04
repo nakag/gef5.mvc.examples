@@ -15,7 +15,9 @@ import org.eclipse.gef.mvc.fx.providers.ShapeOutlineProvider;
 
 import com.google.inject.multibindings.MapBinder;
 
+import tmdmaker.ui.editor.gef5.behaviors.CreateEntityBehavior;
 import tmdmaker.ui.editor.gef5.handlers.CreateNewEntityOnClickHandler;
+import tmdmaker.ui.editor.gef5.handlers.MyPanOnStrokeHandler;
 import tmdmaker.ui.editor.gef5.parts.EntityPart;
 import tmdmaker.ui.editor.gef5.parts.TMDModelPartFactory;
 import tmdmaker.ui.editor.gef5.tools.ItemCreationModel;
@@ -82,6 +84,12 @@ public class TMDMakerModule extends MvcFxModule {
 	protected void bindIRootPartAdaptersForContentViewer(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
 		super.bindIRootPartAdaptersForContentViewer(adapterMapBinder);
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateNewEntityOnClickHandler.class);
-	}
+		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateEntityBehavior.class);
 
+	}
+	@Override
+	protected void bindPanOnTypeHandlerAsIRootPartAdapter(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
+	adapterMapBinder.addBinding(AdapterKey.defaultRole())
+			.to(MyPanOnStrokeHandler.class);
+	}
 }
