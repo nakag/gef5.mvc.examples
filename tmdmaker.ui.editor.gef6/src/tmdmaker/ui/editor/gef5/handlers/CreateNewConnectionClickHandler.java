@@ -73,7 +73,7 @@ public class CreateNewConnectionClickHandler extends AbstractHandler implements 
 			CreationPolicy creationPolicy = root.getAdapter(new TypeToken<CreationPolicy>() {
 			});
 			init(creationPolicy);
-			creationPolicy.create(newConnection, part, HashMultimap.<IContentPart<? extends Node>, String>create());
+			creationPolicy.create(newConnection, dpart, HashMultimap.<IContentPart<? extends Node>, String>create());
 			commit(creationPolicy);
 			try {
 				viewer.getDomain().execute(new ChangeSelectionOperation(viewer, Collections.singletonList(target)),null);
