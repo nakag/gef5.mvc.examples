@@ -88,6 +88,7 @@ public class TMDEditor extends AbstractFXEditor {
 		ToggleGroup toggleGroup = new ToggleGroup();
 		ImageView imageView = new ImageView(CREATION_ICON);
 		ToggleButton createNode = new ToggleButton("add entity", imageView);
+		createNode.setFocusTraversable(false);
 		createNode.setToggleGroup(toggleGroup);
 		createNode.selectedProperty().addListener(
 				(e, oldValue, newValue) -> creationModel.setType(newValue ? ItemCreationModel.Type.Entity : Type.None));
@@ -97,6 +98,7 @@ public class TMDEditor extends AbstractFXEditor {
 		createConn.setToggleGroup(toggleGroup);
 		createConn.selectedProperty().addListener((e, oldValue, newValue) -> creationModel
 				.setType(newValue ? ItemCreationModel.Type.Connection : Type.None));
+		createConn.setFocusTraversable(false);
 
 		creationModel.getTypeProperty().addListener((e, oldValue, newValue) -> {
 			if (oldValue == newValue) {

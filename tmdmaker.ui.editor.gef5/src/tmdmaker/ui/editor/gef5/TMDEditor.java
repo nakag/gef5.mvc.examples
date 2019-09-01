@@ -84,10 +84,15 @@ public class TMDEditor extends AbstractFXEditor {
 		ToggleGroup toggleGroup = new ToggleGroup();
 		ImageView imageView = new ImageView(CREATION_ICON);
 		ToggleButton createNode = new ToggleButton("add entity",imageView);
+
+		// Fix Endless NPE on arrow keys.
+		// TODO: Try to bind palette to FocusModel.
+		createNode.setFocusTraversable(false);
+
 		createNode.setToggleGroup(toggleGroup);
-		createNode.selectedProperty().addListener((e, oldValue, newValue) -> {
-			creationModel.setType(newValue ? ItemCreationModel.Type.Entity : Type.None);
-		});
+		createNode.selectedProperty().addListener((e, oldValue, newValue) -> 
+			creationModel.setType(newValue ? ItemCreationModel.Type.Entity : Type.None)
+		);
 		creationModel.getTypeProperty().addListener((e, oldValue, newValue) -> {
 			if (Type.None == newValue) {
 				Toggle selectedToggle = toggleGroup.getSelectedToggle();

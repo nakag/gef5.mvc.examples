@@ -82,7 +82,7 @@ public class CreateNewConnectionClickHandler extends AbstractHandler implements 
 			}
 		}
 		creationModel.setSource(null);
-		
+		creationModel.setType(Type.None);
 	}
 
 }

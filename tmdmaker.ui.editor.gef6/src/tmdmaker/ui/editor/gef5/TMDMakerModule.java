@@ -11,7 +11,6 @@ import org.eclipse.gef.mvc.fx.parts.DefaultSelectionFeedbackPartFactory;
 import org.eclipse.gef.mvc.fx.parts.DefaultSelectionHandlePartFactory;
 import org.eclipse.gef.mvc.fx.parts.IContentPartFactory;
 import org.eclipse.gef.mvc.fx.policies.TransformPolicy;
-import org.eclipse.gef.mvc.fx.providers.ShapeBoundsProvider;
 import org.eclipse.gef.mvc.fx.providers.ShapeOutlineProvider;
 
 import com.google.inject.multibindings.MapBinder;
@@ -20,7 +19,6 @@ import tmdmaker.ui.editor.gef5.anchors.AnchorProvider;
 import tmdmaker.ui.editor.gef5.behaviors.CreateFeedbackBehavior;
 import tmdmaker.ui.editor.gef5.handlers.CreateNewConnectionClickHandler;
 import tmdmaker.ui.editor.gef5.handlers.CreateNewEntityOnClickHandler;
-import tmdmaker.ui.editor.gef5.handlers.MyPanOnStrokeHandler;
 import tmdmaker.ui.editor.gef5.parts.EntityPart;
 import tmdmaker.ui.editor.gef5.parts.TMDModelPartFactory;
 import tmdmaker.ui.editor.gef5.parts.feedback.TMDFeedbackPartFactory;
@@ -40,7 +38,7 @@ public class TMDMakerModule extends MvcFxModule {
 	protected void bindEntityPartAdapters(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
 		adapterMapBinder
 				.addBinding(AdapterKey.role(DefaultSelectionFeedbackPartFactory.SELECTION_FEEDBACK_GEOMETRY_PROVIDER))
-				.to(ShapeBoundsProvider.class);
+				.to(ShapeOutlineProvider.class);
 
 		// geometry provider for selection handles
 		adapterMapBinder
@@ -76,7 +74,6 @@ public class TMDMakerModule extends MvcFxModule {
 	protected void configure() {
 		super.configure();
 		bindIContentPartFactory();
-
 		bindEntityPartAdapters(AdapterMaps.getAdapterMapBinder(binder(), EntityPart.class));
 	}
 
@@ -99,12 +96,6 @@ public class TMDMakerModule extends MvcFxModule {
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateNewEntityOnClickHandler.class);
 		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateFeedbackBehavior.class);
 //		adapterMapBinder.addBinding(AdapterKey.defaultRole()).to(CreateNewConnectionClickHandler.class);
-	}
-
-	@Override
-	protected void bindPanOnTypeHandlerAsIRootPartAdapter(MapBinder<AdapterKey<?>, Object> adapterMapBinder) {
-	adapterMapBinder.addBinding(AdapterKey.defaultRole())
-			.to(MyPanOnStrokeHandler.class);
 	}
 
 }
